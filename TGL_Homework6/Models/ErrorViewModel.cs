@@ -1,9 +1,8 @@
-namespace TGL_Homework6.Models
-{
-	public class ErrorViewModel
-	{
-		public string? RequestId { get; set; }
+namespace TGL_Homework6.Models;
 
-		public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-	}
+public class ErrorViewModel
+{
+	public string? RequestId { get; set; }
+
+	public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 }
