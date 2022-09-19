@@ -13,23 +13,18 @@
     <hr/>
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.PuppyId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.PuppyId)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Owner)
+            @Html.DisplayNameFor(model => model.PuppyName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Owner)
+            @Html.DisplayFor(model => model.PuppyName)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Breed)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Breed.Name)
-        </dd>
+        
     </dl>
 
     <form asp-action="Delete">

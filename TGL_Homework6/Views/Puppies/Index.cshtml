@@ -14,15 +14,12 @@
     <thead>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.PuppyId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Owner)
+            @Html.DisplayNameFor(model => model.PuppyName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Breed)
-
-        </th>
+       
         <th></th>
     </tr>
     </thead>
@@ -31,14 +28,12 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.PuppyId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Owner)
+                @Html.DisplayFor(modelItem => item.PuppyName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Breed_Id)
-            </td>
+          
             <td>
                 <a asp-action="Edit" asp-route-id="@item.PuppyId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.PuppyId">Details</a> |

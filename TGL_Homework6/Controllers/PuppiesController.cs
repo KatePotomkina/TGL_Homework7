@@ -8,9 +8,9 @@ namespace TGL_Homework6.Controllers;
 
 public class PuppiesController : Controller
 {
-	private readonly PuppyEFContext _context;
+	private readonly MyDbContext _context;
 
-	public PuppiesController(PuppyEFContext context)
+	public PuppiesController(MyDbContext context)
 	{
 		_context = context;
 	}
@@ -18,17 +18,17 @@ public class PuppiesController : Controller
 	// GET: Puppies
 	public async Task<IActionResult> Index()
 	{
-		var puppyEFContext = _context.Puppies.Include(p => p.Breed);
+		var puppyEFContext = _context.Puppies.Include(p => p.Owners);
 		return View(await _context.Puppies.ToListAsync());
 	}
 
 	// GET: Puppies/Details/5
-	public async Task<IActionResult> Details(string id)
+	public async Task<IActionResult> Details(int id)
 	{
 		if (id == null || _context.Puppies == null) return NotFound();
 
 		var puppy = await _context.Puppies
-			.Include(p => p.Breed)
+			.Include(p => p.Owners)
 			.FirstOrDefaultAsync(m => m.PuppyId == id);
 		if (puppy == null) return NotFound();
 
@@ -38,7 +38,7 @@ public class PuppiesController : Controller
 	// GET: Puppies/Create
 	public IActionResult Create()
 	{
-		ViewData["Breed_Id"] = new SelectList(_context.Breeds, "Breed_Id", "Name");
+		ViewData["Breed_Id"] = new SelectList(_context.Owners, "PuppyId", "PuppyName");
 		return View();
 	}
 
@@ -56,18 +56,18 @@ public class PuppiesController : Controller
 			return RedirectToAction(nameof(Index));
 		}
 
-		ViewData["Breed_Id"] = new SelectList(_context.Breeds, "Breed_Id", "Name", puppy.Breed_Id);
+		ViewData["Breed_Id"] = new SelectList(_context.Puppies, "PuppyId", "PuppyName", puppy.Owners);
 		return View(puppy);
 	}
 
 	// GET: Puppies/Edit/5
-	public async Task<IActionResult> Edit(string id)
+	public async Task<IActionResult> Edit(int  id)
 	{
 		if (id == null || _context.Puppies == null) return NotFound();
 
 		var puppy = await _context.Puppies.FindAsync(id);
 		if (puppy == null) return NotFound();
-		ViewData["Breed_Id"] = new SelectList(_context.Breeds, "Breed_Id", "Name", puppy.Breed_Id);
+		ViewData["Breed_Id"] = new SelectList(_context.Puppies, "PuppyId", "PuppyName", puppy.Owners); 
 		return View(puppy);
 	}
 
@@ -76,7 +76,7 @@ public class PuppiesController : Controller
 	// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 	[HttpPost]
 	[ValidateAntiForgeryToken]
-	public async Task<IActionResult> Edit(string id, [Bind("PuppyId,Name,Breed_Id,Owner")] Puppy puppy)
+	public async Task<IActionResult> Edit(int  id, [Bind("PuppyId,Name,Breed_Id,Owner")] Puppy puppy)
 	{
 		if (id != puppy.PuppyId) return NotFound();
 
@@ -97,18 +97,17 @@ public class PuppiesController : Controller
 
 			return RedirectToAction(nameof(Index));
 		}
-
-		ViewData["Breed_Id"] = new SelectList(_context.Breeds, "Breed_Id", "Name", puppy.Breed_Id);
+		ViewData["Breed_Id"] = new SelectList(_context.Puppies, "PuppyId", "PuppyName", puppy.Owners);
 		return View(puppy);
 	}
 
 	// GET: Puppies/Delete/5
-	public async Task<IActionResult> Delete(string id)
+	public async Task<IActionResult> Delete(int id)
 	{
 		if (id == null || _context.Puppies == null) return NotFound();
 
 		var puppy = await _context.Puppies
-			.Include(p => p.Breed)
+			.Include(p => p.Owners)
 			.FirstOrDefaultAsync(m => m.PuppyId == id);
 		if (puppy == null) return NotFound();
 
@@ -121,7 +120,7 @@ public class PuppiesController : Controller
 	[ValidateAntiForgeryToken]
 	public async Task<IActionResult> DeleteConfirmed(string id)
 	{
-		if (_context.Puppies == null) return Problem("Entity set 'PuppyEFContext.Puppies'  is null.");
+		if (_context.Puppies == null) return Problem("Entity set 'MyDbContext.Puppies'  is null.");
 		var puppy = await _context.Puppies.FindAsync(id);
 		if (puppy != null) _context.Puppies.Remove(puppy);
 
@@ -129,7 +128,7 @@ public class PuppiesController : Controller
 		return RedirectToAction(nameof(Index));
 	}
 
-	private bool PuppyExists(string id)
+	private bool PuppyExists(int id)
 	{
 		return (_context.Puppies?.Any(e => e.PuppyId == id)).GetValueOrDefault();
 	}

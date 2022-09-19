@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddApplicationInsightsTelemetry();
-builder.Services.AddDbContext<PuppyEFContext>(/*options=>options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"))*/);
+builder.Services.AddDbContext<MyDbContext>(/*options=>options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"))*/);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

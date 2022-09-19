@@ -19,19 +19,19 @@
                 <span asp-validation-for="PuppyId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control"/>
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="PuppyName" class="control-label"></label>
+                <input asp-for="PuppyName" class="form-control"/>
+                <span asp-validation-for="PuppyName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Breed_Id" class="control-label"></label>
-                <select asp-for="Breed_Id" class="form-control" asp-items="ViewBag.Breed_Id"></select>
+                <label asp-for="Owners" class="control-label"></label>
+                <select asp-for="Owners" class="form-control" asp-items="ViewBag.Breed_Id"></select>
             </div>
-            <div class="form-group">
+          @*  <div class="form-group">
                 <label asp-for="Owner" class="control-label"></label>
                 <input asp-for="Owner" class="form-control"/>
                 <span asp-validation-for="Owner" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary"/>
             </div>

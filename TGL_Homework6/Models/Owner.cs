@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace TGL_Homework6.Models
 {
-    public partial class Puppy
+    public partial class Owner
     {
-        public Puppy()
+        public Owner()
         {
             OwnerPuppies = new HashSet<OwnerPuppy>();
-            Owners = new HashSet<Owner>();
         }
 
-        public int PuppyId { get; set; }
-        public string? PuppyName { get; set; }
+        public int OwnerId { get; set; }
+        public int Name { get; set; }
+        public int? PuppyId { get; set; }
 
+        public virtual Puppy? Puppy { get; set; }
         public virtual ICollection<OwnerPuppy> OwnerPuppies { get; set; }
-        public virtual ICollection<Owner> Owners { get; set; }
     }
 }
